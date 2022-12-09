@@ -12,9 +12,10 @@ ENV \
     MD_TEMPLATE_VERSION="1.2.1" \
     # Template releases: <https://github.com/asyncapi/html-template/releases>
     HTML_TEMPLATE_VERSION="0.28.1" \
-    # additional NPM options
+    # additional options
     NPM_CONFIG_UPDATE_NOTIFIER=false \
-    NPM_CONFIG_AUDIT=false
+    NPM_CONFIG_AUDIT=false \
+    PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 # install generator & other dependencies
 RUN set -x \
