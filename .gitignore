@@ -1,0 +1,13 @@
+## IDEs
+/.idea
+/.vscode
+
+## Vendor
+/node_modules
+
+## Temp dirs & trash
+/__transpiled
+/generated
+/temp
+/tmp
+.DS_Store

@@ -1,0 +1,69 @@
+name: tests
+
+on:
+  push:
+    branches: [master, main]
+    tags-ignore: ['**']
+    paths-ignore: ['**.md']
+  pull_request:
+    paths-ignore: ['**.md']
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs: # Docs: <https://git.io/JvxXE>
+  gitleaks:
+    name: Gitleaks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with: {fetch-depth: 0}
+
+      - name: Check for GitLeaks
+        uses: gacts/gitleaks@v1 # Action page: <https://github.com/gacts/gitleaks>
+
+  generate:
+    name: Generator running
+    runs-on: ubuntu-latest
+    steps:
+      - uses: gacts/setup-node-with-cache@v1
+        with: {node-version: 19}
+
+      - uses: actions/checkout@v3
+
+      - run: npm install -g @asyncapi/generator
+
+      - run: npm install
+
+      - name: Run the generator
+        run: ag ./example/asyncapi.yaml . -o ./example/generated -p packageName=your_go_package_name --force-write
+
+      - id: state
+        run: echo "changed=`git diff --diff-filter=ACMUXTR --name-only | grep example/generated > /dev/null && echo 'true' || echo 'false'`" >> $GITHUB_OUTPUT
+
+      - if: steps.state.outputs.changed == 'true'
+        uses: actions/github-script@v6
+        with:
+          script: core.setFailed('Regenerate the example code using the generator')
+
+  docker-image:
+    name: Build docker image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: Dockerfile
+          push: false
+          tags: app:ci
+
+      - name: Run docker image
+        run: |
+          docker run --rm -u "$(id -u):$(id -g)" -v "${PWD}:/host:rw" -w "/host" app:ci \
+            ./example/asyncapi.yaml /opt/templates/go-template \
+              -o ./example/generated \
+              -p packageName=your_go_package_name \
+              --force-write

@@ -1,0 +1,22 @@
+## IDEs
+.idea
+.vscode
+
+## Git & tools
+.git
+.github
+.gitignore
+.editorconfig
+/Makefile
+
+## Generated files
+/generated
+
+## Temp
+/temp
+/test
+/tmp
+
+## etc
+/*.md
+.DS_Store
