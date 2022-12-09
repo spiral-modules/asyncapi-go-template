@@ -4,8 +4,8 @@
 
 ![release][badge-release]
 [![npm][badge-npm-version]][npm-package]
-[![tests][badge-tests]][actions]
-[![release][badge-release]][actions]
+[![tests][badge-ci-tests]][actions]
+[![release][badge-ci-release]][actions]
 ![license][badge-license]
 
 </div>
@@ -55,12 +55,17 @@ Additionally, you can use the docker image:
 > Using the `latest` tag for the docker image is highly discouraged because of possible backward-incompatible changes during **major** upgrades. Please, use tags in `X.Y.Z` format
 
 ```bash
-$ docker run --rm -u "$(id -u):$(id -g)" -v "${PWD}:/host:rw" -w "/host" ghcr.io/spiral/asyncapi-go-template \
-    ./example/asyncapi.yaml /opt/templates/go-template/ \
+$ docker run --rm -u "$(id -u):$(id -g)" -v "${PWD}:/host:rw" -w "/host" \
+    ghcr.io/spiral/asyncapi-go-template ./example/asyncapi.yaml @spiral/asyncapi-go-template \
       -o ./example/generated \
-      -p packageName=asyncapi \
+      -p packageName=your_go_package_name \
       --force-write
 ```
+
+In addition, the docker image contains installed [`@asyncapi/markdown-template`][md-template] and [`@asyncapi/html-template`][html-template]. You can use them to generate documentation for your AsyncAPI document.
+
+[md-template]:https://github.com/asyncapi/markdown-template
+[html-template]:https://github.com/asyncapi/html-template
 
 ## Template configuration
 
@@ -72,9 +77,9 @@ You can configure this template by passing different parameters in the Generator
 
 [badge-release]:https://img.shields.io/github/v/release/spiral/asyncapi-go-template?style=flat-square
 [badge-npm-version]:https://img.shields.io/npm/v/@spiral/asyncapi-go-template?maxAge=30&style=flat-square
-[badge-tests]:https://img.shields.io/github/workflow/status/spiral/asyncapi-go-template/tests?maxAge=30&label=tests&logo=github&style=flat-square
-[badge-release]:https://img.shields.io/github/workflow/status/spiral/asyncapi-go-template/release?maxAge=30&label=release&logo=github&style=flat-square
+[badge-ci-tests]:https://img.shields.io/github/workflow/status/spiral/asyncapi-go-template/tests?maxAge=30&label=tests&logo=github&style=flat-square
+[badge-ci-release]:https://img.shields.io/github/workflow/status/spiral/asyncapi-go-template/release?maxAge=30&label=release&logo=github&style=flat-square
 [badge-license]:https://img.shields.io/github/license/spiral/asyncapi-go-template.svg?maxAge=30&style=flat-square
-[npm-package]:https://www.npmjs.com/package/@spiral/asyncapi-go-template
 [actions]:https://github.com/spiral/asyncapi-go-template/actions
+[npm-package]:https://github.com/spiral/asyncapi-go-template/pkgs/npm/asyncapi-go-template
 [ghcr]:https://github.com/spiral/asyncapi-go-template/pkgs/container/asyncapi-go-template
