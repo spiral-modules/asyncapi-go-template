@@ -36,7 +36,7 @@ jobs:
             ghcr.io/spiral/asyncapi-go-template:latest
 
   package:
-    name: Publish NPM package
+    name: Publish NPM package # docs: <https://bit.ly/3PkyD24>
     runs-on: ubuntu-latest
     permissions:
       contents: read
