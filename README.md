@@ -75,6 +75,14 @@ You can configure this template by passing different parameters in the Generator
 |---------------|-----------------------------------|----------|------------|
 | `packageName` | Name for the generated Go package | false    | `asyncapi` |
 
+## Releasing
+
+New versions publishing is very simple - just make required changes in this repository, update [changelog file](CHANGELOG.md) and "publish" new release using repo releases page.
+
+Docker image & npm package will be build and published automatically.
+
+> New release will overwrite the `latest` docker image tag.
+
 [badge-release]:https://img.shields.io/github/v/release/spiral/asyncapi-go-template?style=flat-square
 [badge-npm-version]:https://img.shields.io/npm/v/@spiral/asyncapi-go-template?maxAge=30&style=flat-square
 [badge-ci-tests]:https://img.shields.io/github/workflow/status/spiral/asyncapi-go-template/tests?maxAge=30&label=tests&logo=github&style=flat-square
