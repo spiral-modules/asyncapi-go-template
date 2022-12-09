@@ -63,7 +63,7 @@ jobs: # Docs: <https://git.io/JvxXE>
       - name: Run docker image
         run: |
           docker run --rm -u "$(id -u):$(id -g)" -v "${PWD}:/host:rw" -w "/host" app:ci \
-            ./example/asyncapi.yaml /opt/templates/go-template \
+            ./example/asyncapi.yaml @spiral/asyncapi-go-template \
               -o ./example/generated \
               -p packageName=your_go_package_name \
               --force-write
