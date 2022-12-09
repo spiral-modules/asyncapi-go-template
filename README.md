@@ -3,7 +3,6 @@
 ![AsyncAPI logo](https://user-images.githubusercontent.com/7326800/206534082-36d7caf2-a14e-4c80-bf66-9005142c1bb8.png)
 
 ![release][badge-release]
-[![npm][badge-npm-version]][npm-package]
 [![tests][badge-ci-tests]][actions]
 [![release][badge-ci-release]][actions]
 ![license][badge-license]
@@ -52,7 +51,8 @@ Additionally, you can use the docker image:
 |-----------------------------------|---------------------------------------|
 | [GitHub Container Registry][ghcr] | `ghcr.io/spiral/asyncapi-go-template` |
 
-> Using the `latest` tag for the docker image is highly discouraged because of possible backward-incompatible changes during **major** upgrades. Please, use tags in `X.Y.Z` format
+> Using the `latest` tag for the docker image is highly discouraged because of possible backward-incompatible changes
+> during **major** upgrades. Please, use tags in `X.Y.Z` format
 
 ```bash
 $ docker run --rm -u "$(id -u):$(id -g)" -v "${PWD}:/host:rw" -w "/host" \
@@ -81,5 +81,4 @@ You can configure this template by passing different parameters in the Generator
 [badge-ci-release]:https://img.shields.io/github/workflow/status/spiral/asyncapi-go-template/release?maxAge=30&label=release&logo=github&style=flat-square
 [badge-license]:https://img.shields.io/github/license/spiral/asyncapi-go-template.svg?maxAge=30&style=flat-square
 [actions]:https://github.com/spiral/asyncapi-go-template/actions
-[npm-package]:https://github.com/spiral/asyncapi-go-template/pkgs/npm/asyncapi-go-template
 [ghcr]:https://github.com/spiral/asyncapi-go-template/pkgs/container/asyncapi-go-template
